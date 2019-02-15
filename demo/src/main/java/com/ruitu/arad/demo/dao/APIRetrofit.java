@@ -4,7 +4,6 @@ import com.ruitu.arad.base.Config;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -33,7 +32,7 @@ public class APIRetrofit {
             RONG_SERVICE = new Retrofit.Builder()
                     .baseUrl("http://api.cn.ronghub.com/user/")
                     .addConverterFactory(GsonConverterFactory.create())
-                    .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .client(getRongClient())
                     .build().create(ApiService.class);
         }

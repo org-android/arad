@@ -14,10 +14,20 @@ android {
 
     }
 
+    signingConfigs {
+        config {
+            keyAlias 'mall98'
+            keyPassword 'mall98123'
+            storeFile file('mall98.jks')
+            storePassword 'mall98123'
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
         }
     }
 }

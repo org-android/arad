@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Arad</string>
+
+    <string name="default_empty_title">暂无数据</string>
+    <string name="default_empty_detail">暂时没有发现您需要的数据</string>
+    <string name="default_error_title">加载异常</string>
+    <string name="default_error_detail">好像发生了什么异常，请重试。</string>
+    <string name="default_error_btn_txt">重新加载</string>
+</resources>

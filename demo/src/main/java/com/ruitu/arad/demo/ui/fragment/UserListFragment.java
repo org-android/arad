@@ -1,12 +1,13 @@
-package com.ruitu.arad.demo.ui.activity;
+package com.ruitu.arad.demo.ui.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.TextView;
 
 import com.github.jdsjlzx.recyclerview.LRecyclerView;
-import com.ruitu.arad.base.base_list.BaseRefreshActivity;
+import com.ruitu.arad.base.base_list.BaseRefreshFragment;
 import com.ruitu.arad.base.base_list.ListBaseAdapter;
 import com.ruitu.arad.base.base_list.SuperViewHolder;
 import com.ruitu.arad.demo.R;
@@ -14,46 +15,47 @@ import com.ruitu.arad.demo.mvp.model.UserModel;
 import com.ruitu.arad.demo.mvp.presenter.UserPresenter;
 import com.ruitu.arad.support.widget.progress.ProgressLayout;
 import com.ruitu.router_module.bean.User;
-import com.ruitu.router_module.util.RcvUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
-//模拟用户列表页面 很多用户,20个一页
-public class UserListActivity extends BaseRefreshActivity<UserPresenter, UserModel> {
-    private List<User> userList = new ArrayList<>();
+public class UserListFragment extends BaseRefreshFragment<UserPresenter, UserModel> {
 
+    private List<User> userList = new ArrayList<>();
     private int currPage = 1;
     private UserListAdapter adapter;
 
+    public static UserListFragment newInstance() {
+        Bundle args = new Bundle();
+        UserListFragment fragment = new UserListFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Override
     protected int getLayoutRes() {
-        return R.layout.activity_user_list;
+        return R.layout.fragment_user;
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setHeadTitle("用户列表");
-        setRightText("碎片");
+    protected void initViews(View v) {
         getUserList();
-        RcvUtils.refreshCompleteDelay(lRecyclerView, null);
     }
 
     @Override
-    protected void onRightTextClick() {
-        startActivity(UserFragmentActivity.class);
+    protected ProgressLayout findProgressLayout(View v) {
+        return v.findViewById(R.id.progress);
+    }
+
+    @Override
+    protected LRecyclerView findRecyclerView(View v) {
+        return v.findViewById(R.id.lcv_list);
     }
 
     @Override
     protected RecyclerView.Adapter initAdapter() {
-        adapter = new UserListAdapter(this);
+        adapter = new UserListAdapter(getActivity());
         return adapter;
-    }
-
-    @Override
-    protected LRecyclerView findRecyclerView() {
-        return findViewById(R.id.lrcv_user);
     }
 
     private void getUserList() {
@@ -85,11 +87,6 @@ public class UserListActivity extends BaseRefreshActivity<UserPresenter, UserMod
             userList.addAll(newData);
             adapter.setDataList(userList);
         }
-    }
-
-    @Override
-    protected ProgressLayout findProgressLayout() {
-        return findViewById(R.id.progress);
     }
 
     private class UserListAdapter extends ListBaseAdapter<User> {

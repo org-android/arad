@@ -25,7 +25,8 @@ public class UserFragmentActivity extends BaseActivity {
     protected void onResumeFragments() {
         super.onResumeFragments();
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.add(R.id.container, UserListFragment.newInstance());
+        ft.replace(R.id.container, UserListFragment.newInstance());
         ft.commit();
+//        LocalBroadcastManager.getInstance(this).
     }
 }

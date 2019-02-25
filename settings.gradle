@@ -1,1 +1,1 @@
-include ':arad', ':demo', ':router_module', ':demo2'
+include ':arad', ':demo', ':router_module', ':demo2', ':player18'

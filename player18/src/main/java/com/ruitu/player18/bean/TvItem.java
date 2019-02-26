@@ -8,6 +8,14 @@ public class TvItem implements Serializable {
     private String logo;
     private String type;
 
+    public TvItem() {
+    }
+
+    public TvItem(String name, String url) {
+        this.name = name;
+        this.url = url;
+    }
+
     public String getName() {
         return name;
     }

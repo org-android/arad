@@ -8,7 +8,8 @@
     <RelativeLayout
         android:id="@+id/rl_container"
         android:layout_width="match_parent"
-        android:layout_height="200dp">
+        android:layout_height="200dp"
+        android:background="#000000">
 
         <VideoView
             android:id="@+id/videoView"
@@ -16,17 +17,66 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true" />
 
-        <RelativeLayout
-            android:id="@+id/rl_controller"
+        <LinearLayout
+            android:id="@+id/ll_title"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_alignParentBottom="true">
+            android:layout_height="36dp"
+            android:background="#66666666"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="暂无节目"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_controller"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:layout_alignParentBottom="true"
+            android:background="#66666666"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
+
+            <TextView
+                android:id="@+id/tv_time"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="1月1日  00:00:00"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_choose_tv"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@+id/iv_full_screen"
+                android:gravity="center"
+                android:text="选台"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:visibility="gone" />
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:scaleType="fitXY" />
-        </RelativeLayout>
+                android:id="@+id/iv_full_screen"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:padding="8dp"
+                android:scaleType="fitXY"
+                android:src="@mipmap/play_ctrl_full_screen" />
+        </LinearLayout>
     </RelativeLayout>
 
     <RelativeLayout
@@ -37,18 +87,36 @@
 
         <HorizontalScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:overScrollMode="never"
+            android:scrollbars="none">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-                <GridView
+                <com.ruitu.arad.support.view.MeasuredGridView
                     android:id="@+id/gv_tv_list"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:horizontalSpacing="10dp"
+                    android:verticalSpacing="10dp" />
             </LinearLayout>
         </HorizontalScrollView>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_tv_list_2"
+        android:layout_width="260dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:visibility="visible">
+
+        <ListView
+            android:id="@+id/lv_tv_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
     </RelativeLayout>
 </RelativeLayout>

@@ -43,15 +43,19 @@ public class TvGridAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup viewGroup) {
         TvViewHolder holder = null;
-        if (null != convertView) {
-            holder = (TvViewHolder) convertView.getTag();
-        } else {
+        if (null == convertView) {
             convertView = View.inflate(activity, R.layout.item_tv_list, null);
             holder = new TvViewHolder();
             holder.tv_name = convertView.findViewById(R.id.tv_name);
             holder.iv_logo = convertView.findViewById(R.id.iv_logo);
             convertView.setTag(holder);
+        } else {
+            holder = (TvViewHolder) convertView.getTag();
         }
+        TvItem tvItem = tvItemList.get(position);
+        holder.tv_name.setText(tvItem.getName());
+        holder.iv_logo.setImageResource(R.mipmap.player1);
+
         return convertView;
     }
 

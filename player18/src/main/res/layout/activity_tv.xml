@@ -59,7 +59,7 @@
                 android:id="@+id/tv_choose_tv"
                 android:layout_width="36dp"
                 android:layout_height="36dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginRight="24dp"
                 android:layout_toLeftOf="@+id/iv_full_screen"
                 android:gravity="center"
                 android:text="选台"
@@ -81,34 +81,39 @@
 
     <RelativeLayout
         android:id="@+id/rl_tv_list"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_below="@+id/rl_container">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_container"
+        android:layout_centerHorizontal="true"
+        android:padding="10dp">
+
+        <GridView
+            android:id="@+id/gv_tv_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:horizontalSpacing="10dp"
+            android:overScrollMode="never"
+            android:scrollbars="none"
+            android:verticalSpacing="10dp" />
 
         <HorizontalScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="1dp"
+            android:layout_height="wrap_content"
             android:overScrollMode="never"
             android:scrollbars="none">
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="1dp"
                 android:layout_height="match_parent">
 
-                <com.ruitu.arad.support.view.MeasuredGridView
-                    android:id="@+id/gv_tv_list"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:horizontalSpacing="10dp"
-                    android:verticalSpacing="10dp" />
             </LinearLayout>
         </HorizontalScrollView>
     </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/rl_tv_list_2"
-        android:layout_width="260dp"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:visibility="visible">
@@ -117,6 +122,8 @@
             android:id="@+id/lv_tv_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:divider="@color/divider_color"
+            android:dividerHeight="1dp"
             android:visibility="gone" />
     </RelativeLayout>
 </RelativeLayout>

@@ -6,13 +6,16 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 
+import com.hjq.permissions.Permission;
 import com.ruitu.arad.base.BaseActivity;
 import com.ruitu.arad.util.ToastUtils;
 import com.ruitu.arad.util.UIUtils;
 import com.ruitu.player18.player.PlayerActivity;
 import com.ruitu.player18.player.VideoViewActivity;
+import com.ruitu.player18.radio.FmOnlineActivity;
 import com.ruitu.player18.tv.TvActivity;
 import com.ruitu.router_module.util.AlertUtil;
+import com.ruitu.router_module.util.PermissionUtil;
 
 public class MainActivity extends BaseActivity {
     private LinearLayout ll_1, ll_2, ll_3, ll_4, ll_5, ll_6;
@@ -36,9 +39,21 @@ public class MainActivity extends BaseActivity {
         ll_6 = findViewById(R.id.ll_6);
 
         alertDialog = new AlertDialog.Builder(this, R.style.Dialog_FS).create();
-        setHeadTitle("18视频");
+        setHeadTitle(getResources().getString(R.string.app_name));
         setNoNavigationIcon();
         setListeners();
+
+        PermissionUtil.handleMultiPermission(this, "存储", new PermissionUtil.PermissionListener() {
+            @Override
+            public void onPermissionOk(boolean isOk) {
+
+            }
+
+            @Override
+            public void onOpenPermissionPage(boolean isOpen) {
+
+            }
+        }, Permission.Group.STORAGE);
     }
 
     private void setListeners() {
@@ -95,8 +110,8 @@ public class MainActivity extends BaseActivity {
         if (v == ll_2) {
             startActivity(TvActivity.class);
         }
-        if (v == ll_3) {
-            ToastUtils.showShortSafe("3");
+        if (v == ll_3) {//在线fm
+            startActivity(FmOnlineActivity.class);
         }
         if (v == ll_4) {
             ToastUtils.showShortSafe("4");

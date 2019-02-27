@@ -19,7 +19,6 @@ import android.widget.TextView;
 import android.widget.VideoView;
 
 import com.ruitu.arad.base.BaseActivity;
-import com.ruitu.arad.support.view.MeasuredGridView;
 import com.ruitu.arad.util.AnimationUtil;
 import com.ruitu.arad.util.HandlerUtil;
 import com.ruitu.arad.util.ScreenUtils;
@@ -28,19 +27,23 @@ import com.ruitu.arad.util.ToastUtils;
 import com.ruitu.arad.util.UIUtils;
 import com.ruitu.player18.R;
 import com.ruitu.player18.bean.TvItem;
+import com.ruitu.player18.mvp.TvModel;
+import com.ruitu.player18.mvp.TvPresenter;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class TvActivity extends BaseActivity implements HandlerUtil.OnReceiveMessageListener {
+public class TvActivity extends BaseActivity<TvPresenter, TvModel> implements HandlerUtil.OnReceiveMessageListener {
+    public final static int LINE_NUM = 3;//频道行数
+
     private TextView tv_choose_tv, tv_time, tv_name;//选台,时间,名称
     private ImageView iv_full_screen;//全屏切换
     private VideoView videoView;
     private RelativeLayout rl_container, rl_tv_list;//播放器videoView的容器,电视节目列表
     private LinearLayout ll_title, ll_controller;//播放器的标题栏,控制栏
-    private MeasuredGridView gv_tv_list;//电视节目列表
+    private GridView gv_tv_list;//电视节目列表
     private ListView lv_tv_list;//全屏选台的电视节目列表
 
     private TvGridAdapter adapter;
@@ -53,23 +56,10 @@ public class TvActivity extends BaseActivity implements HandlerUtil.OnReceiveMes
 
     private HandlerUtil.HandlerHolder handlerHolder = new HandlerUtil.HandlerHolder(this);
 
-    //    private String video_url = "http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8";
-
-    private void initTvItems() {
-        tvItemList.add(new TvItem("cctv1", "http://cctvtxyh5c.liveplay.myqcloud.com/wstv/cctv1_2/index.m3u8"));
-        tvItemList.add(new TvItem("cctv13", "http://liveali.ifeng.com/live/CCTV.m3u8"));
-        tvItemList.add(new TvItem("第一财经", "https://w1live.livecdn.yicai.com/live/cbn.m3u8"));
-        tvItemList.add(new TvItem("浙江新闻", "http://l.cztvcloud.com/channels/lantian/channel13/360p.m3u8"));
-        tvItemList.add(new TvItem("深圳卫视", "http://www.szmgiptv.com:14436/hls/07.m3u8"));
-        tvItemList.add(new TvItem("湖北卫视", "http://live.cjyun.org/video/s10008-hbws2018/index.m3u8"));
-        tvItemList.add(new TvItem("南方卫视", "http://nclive.grtn.cn/tvs2/sd/live.m3u8"));
-        tvItemList.add(new TvItem("凤凰中文", "http://117.169.120.217:8080/live/fhchinese/.m3u8"));
-    }
-
     @Override
     public void handlerMessage(Message msg) {
         if (msg.what == 19022651) {
-            tv_time.setText("" + new SimpleDateFormat("M月d日  HH:mm:ss").format(new Date()));
+            tv_time.setText(new SimpleDateFormat("M月d日  HH:mm:ss").format(new Date()));
             handlerHolder.sendEmptyMessageDelayed(19022651, 1000);
         }
     }
@@ -95,22 +85,10 @@ public class TvActivity extends BaseActivity implements HandlerUtil.OnReceiveMes
         ll_controller = findViewById(R.id.ll_controller);
         lv_tv_list = findViewById(R.id.lv_tv_list);
 
-        initTvItems();
-        adapter = new TvGridAdapter(this);
-        int column = tvItemList.size() % 2 == 0 ? tvItemList.size() / 2 : tvItemList.size() / 2 + 1;
-        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) gv_tv_list.getLayoutParams();
-        params.width = column * SizeUtils.dp2px(120 + 10) - SizeUtils.dp2px(10);
-        params.height = LinearLayout.LayoutParams.MATCH_PARENT;
-        gv_tv_list.setLayoutParams(params);
-        gv_tv_list.setColumnWidth(SizeUtils.dp2px(120));
-        gv_tv_list.setNumColumns(column);
-        gv_tv_list.setStretchMode(GridView.NO_STRETCH);
-        gv_tv_list.setAdapter(adapter);
-        adapter.setTvItemList(tvItemList);
+        p.initTvItemList();
 
+        adapter = new TvGridAdapter(this);
         adapter2 = new TvGridAdapter(this);
-        lv_tv_list.setAdapter(adapter2);
-        adapter2.setTvItemList(tvItemList);
 
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);//默认先给个竖屏
         handlerHolder.sendEmptyMessage(19022651);
@@ -118,12 +96,47 @@ public class TvActivity extends BaseActivity implements HandlerUtil.OnReceiveMes
         setListeners();
     }
 
+    @Override
+    public void onReqComplete(int code, boolean isOk, Object data) {
+        if (code == 1) {
+            tvItemList = (List<TvItem>) data;
+            int column = tvItemList.size() % LINE_NUM == 0 ?
+                    tvItemList.size() / LINE_NUM : tvItemList.size() / LINE_NUM + 1;
+//        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) gv_tv_list.getLayoutParams();
+//        params.width = column * SizeUtils.dp2px(120 + 10) - SizeUtils.dp2px(10);
+//        params.height = LinearLayout.LayoutParams.MATCH_PARENT;
+//        gv_tv_list.setLayoutParams(params);
+//        int itemWidth = ScreenUtils.getScreenWidth() / 3;
+//        gv_tv_list.setColumnWidth(itemWidth);
+            gv_tv_list.setColumnWidth(SizeUtils.dp2px(140));
+            gv_tv_list.setNumColumns(2);// column
+            gv_tv_list.setStretchMode(GridView.NO_STRETCH);
+            gv_tv_list.setAdapter(adapter);
+            adapter.setTvItemList(tvItemList);
+
+            adapter2.type = 1;//加载横屏电视节目布局
+            lv_tv_list.setAdapter(adapter2);
+            adapter2.setTvItemList(tvItemList);
+        }
+    }
+
     private void play(String video_url) {
+        for (int i = 0; i < tvItemList.size(); i++) {
+            if (tvItemList.get(i) != currTvItem && tvItemList.get(i).getType() == 3) {
+                tvItemList.get(i).setType(2);//将其他正在播放的状态置空
+            }
+            if (currTvItem.getType() == 2) {//点击的是可以播放的
+                currTvItem.setType(3);
+            }
+        }
+        adapter.setTvItemList(tvItemList);
+        adapter2.setTvItemList(tvItemList);
+
         isTvPlaying = false;
         hideProgress();
         final Uri uri = Uri.parse(video_url);
         videoView.setVideoURI(uri);//设置视频路径
-        showProgressWithText(true, "加载电视节目...");
+        showProgressWithText(true, "准备播放" + currTvItem.getName());
         tv_name.setText("当前播放：" + currTvItem.getName());
     }
 
@@ -138,19 +151,25 @@ public class TvActivity extends BaseActivity implements HandlerUtil.OnReceiveMes
             }
         }
         if (v == tv_choose_tv) {//选台
+            AnimationUtil.startTranlateAnimation(lv_tv_list
+                    , ScreenUtils.getScreenWidth() + SizeUtils.dp2px(180), 0);
             lv_tv_list.setVisibility(View.VISIBLE);
         }
         if (v == videoView) {
-            lv_tv_list.setVisibility(View.GONE);
-            if (ll_title.getVisibility() == View.VISIBLE) {
-                showOrHideController(false);
+            if (lv_tv_list.getVisibility() == View.VISIBLE) {
+                lv_tv_list.setVisibility(View.GONE);
             } else {
-                showOrHideController(true);
+                if (ll_title.getVisibility() == View.VISIBLE) {
+                    showOrHideController(false);
+                } else {
+                    showOrHideController(true);
+                }
             }
         }
     }
 
     private void setListeners() {
+        videoView.setOnClickListener(this);
         iv_full_screen.setOnClickListener(this);
         tv_choose_tv.setOnClickListener(this);
         gv_tv_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -170,20 +189,16 @@ public class TvActivity extends BaseActivity implements HandlerUtil.OnReceiveMes
         videoView.setOnErrorListener(new MediaPlayer.OnErrorListener() {
             @Override
             public boolean onError(MediaPlayer mp, int what, int extra) {
+                hideProgress();
                 String message = "非常抱歉,视频加载失败";
                 UIUtils.showAlertDialog(getSupportFragmentManager(), "温馨提示", message
-                        , "重新加载", "返回"
+                        , "重新加载", "取消"
                         , new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 play(currTvItem.getUrl());
                             }
-                        }, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                finish();
-                            }
-                        });
+                        }, null);
                 return false;
             }
         });
@@ -205,7 +220,6 @@ public class TvActivity extends BaseActivity implements HandlerUtil.OnReceiveMes
                 //播放完成回调
             }
         });
-        videoView.setOnClickListener(this);
     }
 
     private void setVideoViewSize(boolean isPortrait) {//设置VideoView的尺寸

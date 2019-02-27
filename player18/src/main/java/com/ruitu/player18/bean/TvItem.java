@@ -6,12 +6,13 @@ public class TvItem implements Serializable {
     private String name;
     private String url;
     private String logo;
-    private String type;
+    private int type; // 0 不能看 1 正在测试 2 可以看 3 正在播放
 
     public TvItem() {
     }
 
-    public TvItem(String name, String url) {
+    public TvItem(int t, String name, String url) {
+        this.type = t;
         this.name = name;
         this.url = url;
     }
@@ -40,11 +41,11 @@ public class TvItem implements Serializable {
         this.logo = logo;
     }
 
-    public String getType() {
+    public int getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(int type) {
         this.type = type;
     }
 }

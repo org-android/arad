@@ -31,4 +31,12 @@
         <item name="android:background">@drawable/white_bg_click_selector</item>
     </style>
 
+    <style name="radio_btn_icon_style">
+        <item name="android:layout_width">36dp</item>
+        <item name="android:layout_height">36dp</item>
+        <item name="android:scaleType">fitXY</item>
+        <item name="android:background">@drawable/radio_btn_bg_shape</item>
+        <item name="android:padding">10dp</item>
+    </style>
+
 </resources>

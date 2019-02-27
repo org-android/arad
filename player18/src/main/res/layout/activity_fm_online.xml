@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rl_window"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".radio.FmOnlineActivity">
+
+    <include
+        android:id="@+id/header"
+        layout="@layout/header_layout" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/header"
+        android:layout_margin="16dp"
+        android:background="@drawable/gray_bk_12dp_shape"
+        android:overScrollMode="never"
+        android:scrollbars="none">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/rl_screen"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/radio_screen_bg_shape"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/tv_logo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="MY  FM"
+                    android:textColor="@color/text_red"
+                    android:textSize="36sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_logo"
+                    android:paddingTop="24dp"
+                    android:text="歌曲名称"
+                    android:textColor="@color/text_black"
+                    android:textSize="16sp" />
+            </RelativeLayout>
+
+            <ImageView
+                android:id="@+id/iv_speaker"
+                android:layout_width="320dp"
+                android:layout_height="320dp"
+                android:layout_below="@+id/rl_screen"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="6dp"
+                android:scaleType="fitXY"
+                android:src="@mipmap/fm_loud_speaker" />
+
+            <LinearLayout
+                android:id="@+id/ll_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/iv_speaker"
+                android:orientation="horizontal"
+                android:paddingTop="36dp"
+                android:paddingBottom="16dp">
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1" />
+
+                <ImageView
+                    android:id="@+id/iv_menu"
+                    style="@style/radio_btn_icon_style"
+                    android:src="@mipmap/radio_menu" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1" />
+
+                <ImageView
+                    android:id="@+id/iv_up"
+                    style="@style/radio_btn_icon_style"
+                    android:src="@mipmap/radio_up" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1" />
+
+                <ImageView
+                    android:id="@+id/iv_down"
+                    style="@style/radio_btn_icon_style"
+                    android:src="@mipmap/radio_down" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1" />
+
+                <ImageView
+                    android:id="@+id/iv_play"
+                    style="@style/radio_btn_icon_style"
+                    android:src="@mipmap/radio_play" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1" />
+
+                <ImageView
+                    android:id="@+id/iv_left"
+                    style="@style/radio_btn_icon_style"
+                    android:src="@mipmap/radio_left" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1" />
+
+
+                <ImageView
+                    android:id="@+id/iv_right"
+                    style="@style/radio_btn_icon_style"
+                    android:src="@mipmap/radio_right" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1" />
+            </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
+
+    <RelativeLayout
+        android:id="@+id/rl_music_list"
+        android:layout_width="match_parent"
+        android:layout_height="450dp"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:background="@drawable/radio_music_list_bg_shape"
+        android:padding="2dp"
+        android:visibility="gone">
+
+        <RelativeLayout
+            android:id="@+id/rl_header"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="#eeeeee">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="歌曲列表"
+                android:textColor="@color/text_black"
+                android:textSize="14sp" />
+        </RelativeLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rcv_music_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/tv_close"
+            android:layout_below="@+id/rl_header" />
+
+        <TextView
+            android:id="@+id/tv_close"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true"
+            android:background="#eeeeee"
+            android:gravity="center"
+            android:text="关闭"
+            android:textColor="@color/text_black"
+            android:textSize="14sp" />
+    </RelativeLayout>
+</RelativeLayout>

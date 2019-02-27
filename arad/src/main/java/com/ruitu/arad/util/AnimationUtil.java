@@ -246,7 +246,7 @@ public class AnimationUtil {
     }
 
     /**
-     * 从下网上移动的位移动画
+     * 从下往上移动的位移动画
      *
      * @param paramView
      * @return
@@ -262,6 +262,29 @@ public class AnimationUtil {
         ObjectAnimator localObjectAnimator = ObjectAnimator.ofFloat(paramView,
                 "translationY", arrayOfFloat);
         localObjectAnimator.setDuration(240L);
+        localObjectAnimator.setInterpolator(new DecelerateInterpolator());
+        localAnimatorSet.play(localObjectAnimator);
+        localAnimatorSet.start();
+        return localAnimatorSet;
+    }
+
+    /**
+     * 从右往左移动的位移动画
+     *
+     * @param paramView
+     * @return
+     */
+    public static AnimatorSet startTranlateAnimation(View paramView, float from, float to) {
+        if (paramView.getAnimation() != null)
+            paramView.getAnimation().cancel();
+        paramView.clearAnimation();
+        AnimatorSet localAnimatorSet = new AnimatorSet();
+        float[] arrayOfFloat = new float[2];
+        arrayOfFloat[0] = from;
+        arrayOfFloat[1] = to;
+        ObjectAnimator localObjectAnimator = ObjectAnimator.ofFloat(paramView,
+                "translationX", arrayOfFloat);
+        localObjectAnimator.setDuration(ANIMA_TIME);
         localObjectAnimator.setInterpolator(new DecelerateInterpolator());
         localAnimatorSet.play(localObjectAnimator);
         localAnimatorSet.start();

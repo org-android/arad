@@ -44,11 +44,9 @@ public class FmOnlineActivity extends BaseActivity<RadioPresenter, RadioModel> i
     private MediaPlayer player;
     private List<MusicInfo> musicInfoList = new ArrayList<>();
     private MusicInfo curMusic;//记录当前操作或者播放的音乐
-    private int currSeekBarProgress = 0;//记录当前SeekBar的进度
     private MusicListAdapter adapter;
 
     private boolean isPlayed = false;//是否播放过音乐
-
     private HandlerUtil.HandlerHolder handlerHolder;
 
     @Override
@@ -81,11 +79,6 @@ public class FmOnlineActivity extends BaseActivity<RadioPresenter, RadioModel> i
         tv_time = findViewById(R.id.tv_time);
         tv_name = findViewById(R.id.tv_name);
         tv_artist = findViewById(R.id.tv_artist);
-
-//        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) iv_speaker.getLayoutParams();
-//        params.width = ScreenUtils.getScreenWidth() - SizeUtils.dp2px(130);
-//        params.height = params.width;
-//        iv_speaker.setLayoutParams(params);
 
         adapter = new MusicListAdapter(this);
         LinearLayoutManager manager = new LinearLayoutManager(this);
@@ -127,7 +120,7 @@ public class FmOnlineActivity extends BaseActivity<RadioPresenter, RadioModel> i
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-                currSeekBarProgress = seekBar.getProgress();
+
             }
 
             @Override

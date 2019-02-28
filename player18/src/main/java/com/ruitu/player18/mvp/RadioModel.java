@@ -30,7 +30,9 @@ public class RadioModel extends BaseModel {
                                     MediaStore.Audio.Media.ARTIST,
                                     MediaStore.Audio.Media.DURATION,
                                     MediaStore.Audio.Media.SIZE,
-                                    MediaStore.Audio.Media.DATA}, null, null, null);
+                                    MediaStore.Audio.Media.DATA,
+                                    MediaStore.Audio.Media.ALBUM_ID
+                            }, null, null, null);
 
                     List<MusicInfo> mMusicInfos = new ArrayList<>();
                     for (int i = 0; i < mCursor.getCount(); ++i) {
@@ -45,6 +47,7 @@ public class RadioModel extends BaseModel {
                         long duration = mCursor.getLong(5);
                         long size = mCursor.getLong(6);
                         String url = mCursor.getString(7);   //转存数据
+                        int albumKey = (int) mCursor.getLong(8);   //转存数据
 
                         musicInfo.setTitle(title);
                         musicInfo.setId(id);
@@ -54,6 +57,7 @@ public class RadioModel extends BaseModel {
                         musicInfo.setDisplayName(displayName);
                         musicInfo.setDuration(duration);
                         musicInfo.setUrl(url);  //存到数据单元
+                        musicInfo.setAlbumId(albumKey);
 
                         mMusicInfos.add(musicInfo);  //添加到List
                     }

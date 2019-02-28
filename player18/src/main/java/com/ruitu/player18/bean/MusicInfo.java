@@ -11,6 +11,16 @@ public class MusicInfo implements Serializable {
     private String displayName;
     private long duration;
     private String url;
+    private int albumId;
+    private boolean isPlaying = false;//标识是否正在播放
+
+    public boolean isPlaying() {
+        return isPlaying;
+    }
+
+    public void setPlaying(boolean playing) {
+        isPlaying = playing;
+    }
 
     public long getId() {
         return id;
@@ -74,5 +84,28 @@ public class MusicInfo implements Serializable {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public int getAlbumId() {
+        return albumId;
+    }
+
+    public void setAlbumId(int albumId) {
+        this.albumId = albumId;
+    }
+
+    @Override
+    public String toString() {
+        return "MusicInfo{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", album='" + album + '\'' +
+                ", artist='" + artist + '\'' +
+                ", size=" + size +
+                ", displayName='" + displayName + '\'' +
+                ", duration=" + duration +
+                ", url='" + url + '\'' +
+                ", albumId='" + albumId + '\'' +
+                '}';
     }
 }

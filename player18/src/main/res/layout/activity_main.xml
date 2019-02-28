@@ -56,7 +56,7 @@
 
             <TextView
                 style="@style/main_menu_txt_style"
-                android:text="在线FM" />
+                android:text="音悦台" />
         </LinearLayout>
     </LinearLayout>
 

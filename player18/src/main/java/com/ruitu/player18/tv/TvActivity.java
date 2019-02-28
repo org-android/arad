@@ -192,13 +192,13 @@ public class TvActivity extends BaseActivity<TvPresenter, TvModel> implements Ha
                 hideProgress();
                 String message = "非常抱歉,视频加载失败";
                 UIUtils.showAlertDialog(getSupportFragmentManager(), "温馨提示", message
-                        , "重新加载", "取消"
-                        , new DialogInterface.OnClickListener() {
+                        , "取消", "重新加载"
+                        , null, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 play(currTvItem.getUrl());
                             }
-                        }, null);
+                        });
                 return false;
             }
         });

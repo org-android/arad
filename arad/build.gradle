@@ -68,4 +68,5 @@ dependencies {
     api 'com.androidkun:XTabLayout:1.1.4'
     api 'q.rorbin:badgeview:1.1.0'
     api 'com.hjq:xxpermissions:5.2'
+    api 'com.github.1002326270xc:LayoutManager-FlowLayout:v1.7'
 }

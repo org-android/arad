@@ -4,12 +4,12 @@ dependencies {
 }
 
 android {
-    compileSdkVersion Integer.parseInt(project.ANDROID_BUILD_SDK_VERSION)
-    buildToolsVersion project.ANDROID_BUILD_TOOLS_VERSION
+    compileSdkVersion 27
+//    buildToolsVersion project.ANDROID_BUILD_TOOLS_VERSION
 
     defaultConfig {
-        minSdkVersion Integer.parseInt(project.ANDROID_BUILD_MIN_SDK_VERSION)
-        targetSdkVersion Integer.parseInt(project.ANDROID_BUILD_TARGET_SDK_VERSION)
+        minSdkVersion 17
+        targetSdkVersion 27
     }
     sourceSets {
         main {
@@ -20,7 +20,5 @@ android {
             renderscript.srcDirs = ['src']
             res.srcDirs = ['res']
         }
-
     }
-
 }

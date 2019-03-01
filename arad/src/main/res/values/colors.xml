@@ -23,4 +23,6 @@
     <color name="text_red">#bbff0000</color>
     <color name="text_blue">#5EAAF6</color>
     <color name="text_green">#00bb00</color>
+
+    <color name="login_theme">#2fa881</color>
 </resources>

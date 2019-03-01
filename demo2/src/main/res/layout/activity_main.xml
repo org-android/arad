@@ -1,8 +1,252 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    android:orientation="vertical"
     tools:context=".MainActivity">
-</android.support.constraint.ConstraintLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dp_6"
+            android:background="@mipmap/back" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_toRightOf="@id/iv_back">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textSize="@dimen/sp_16" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_6"
+                android:text="已保存"
+                android:textSize="@dimen/sp_14" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_preview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/dp_10"
+            android:text="发布"
+            android:textColor="@color/text_red"
+            android:textSize="@dimen/sp_16" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#33000000" />
+
+    <Button
+        android:id="@+id/btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="Click"
+        android:visibility="gone" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <com.roc.view.RichEditor
+            android:id="@+id/richEditor"
+            android:layout_above="@id/ll_html"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+        </com.roc.view.RichEditor>
+        <FrameLayout
+            android:id="@+id/frameLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/ll_html"
+            android:layout_margin="@dimen/dp_6"
+            android:visibility="gone"
+            android:layout_alignParentRight="true">
+            <android.support.v7.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="@dimen/dp_4"
+                android:layout_margin="@dimen/dp_4"
+                android:background="@color/white">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/text_black"
+                        android:textSize="@dimen/sp_16"
+                        android:padding="@dimen/dp_10"
+                        android:text="保存为私密文章"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/sp_16"
+                        android:padding="@dimen/dp_10"
+                        android:textColor="@color/text_black"
+                        android:text="放弃编辑"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/sp_16"
+                        android:padding="@dimen/dp_10"
+                        android:textColor="@color/text_black"
+                        android:text="发布为付费文章"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/sp_16"
+                        android:padding="@dimen/dp_10"
+                        android:textColor="@color/text_black"
+                        android:text="文集设置"/>
+
+
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+        </FrameLayout>
+        <LinearLayout
+            android:id="@+id/ll_html"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#f2f1f6"
+            android:layout_alignParentBottom="true"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/rl_font_style"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="#33000000"
+                android:visibility="gone">
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical">
+
+                        <ImageView
+                            android:id="@+id/iv_bold"
+                            style="@style/FontIcon"
+                            android:src="@drawable/select_bold_icon" />
+
+                        <ImageView
+                            android:id="@+id/iv_italic"
+                            style="@style/FontIcon"
+                            android:src="@drawable/select_lean_icon" />
+
+                        <ImageView
+                            android:id="@+id/iv_strikethrough"
+                            style="@style/FontIcon"
+                            android:src="@drawable/select_strikethrough__icon" />
+
+                        <ImageView
+                            android:id="@+id/iv_blockquote"
+                            style="@style/FontIcon"
+                            android:src="@drawable/select_blockquote_icon" />
+
+                        <ImageView
+                            android:id="@+id/h1"
+                            style="@style/FontIcon"
+                            android:src="@drawable/select_h1_icon" />
+
+                        <ImageView
+                            android:id="@+id/h2"
+                            style="@style/FontIcon"
+                            android:src="@drawable/select_h2_icon" />
+
+                        <ImageView
+                            android:id="@+id/h3"
+                            style="@style/FontIcon"
+                            android:src="@drawable/select_h3_icon" />
+
+                        <ImageView
+                            android:id="@+id/h4"
+                            style="@style/FontIcon"
+                            android:src="@drawable/select_h4_icon" />
+
+                    </LinearLayout>
+                </HorizontalScrollView>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/ll"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingVertical="@dimen/dp_10">
+
+                <ImageView
+                    android:id="@+id/iv_image"
+                    style="@style/EditorIcon"
+                    android:layout_weight="1"
+                    android:src="@mipmap/photo" />
+
+                <ImageView
+                    android:id="@+id/iv_font"
+                    style="@style/EditorIcon"
+                    android:layout_weight="1"
+                    android:src="@drawable/select_font_icon" />
+
+                <ImageView
+                    android:id="@+id/iv_insert_link"
+                    style="@style/EditorIcon"
+                    android:layout_weight="1"
+                    android:src="@mipmap/charulianjie" />
+
+                <ImageView
+                    android:id="@+id/iv_undo"
+                    style="@style/EditorIcon"
+                    android:layout_weight="1"
+                    android:src="@mipmap/iconfontchexiao1" />
+
+                <ImageView
+                    android:id="@+id/iv_redo"
+                    style="@style/EditorIcon"
+                    android:layout_weight="1"
+                    android:src="@mipmap/iconfontchexiao" />
+
+                <ImageView
+                    android:id="@+id/iv_setting"
+                    style="@style/EditorIcon"
+                    android:layout_weight="1"
+                    android:src="@drawable/select_setting_icon" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </RelativeLayout>
+
+
+</LinearLayout>

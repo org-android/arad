@@ -29,13 +29,13 @@
             android:label="@string/title_activity_home" />
         <activity
             android:name=".RegisterActivity"
-            android:theme="@style/Translucent" />
+            android:theme="@style/AppTheme" />
         <activity
-            android:name=".LoginActivity"
+                android:name=".MainActivity"
             android:label="@string/title_activity_login" />
         <activity
-            android:name=".MainActivity"
-            android:theme="@style/Translucent">
+            android:name=".LoginActivity"
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

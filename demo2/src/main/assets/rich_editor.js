@@ -150,9 +150,7 @@ RE.setFontSize = function(fontSize){
 
 RE.setHeading = function(heading) {
     document.execCommand('formatBlock', false, '<h'+heading+'>');
-
 }
-
 RE.setIndent = function() {
     document.execCommand('indent', false, null);
 }

@@ -230,11 +230,10 @@ public class MainActivity extends BaseContentActivity {
 
             if (h1.isSelected()) {
                 h1.setSelected(false);
-                richEditor.setText();
             } else {
                 h1.setSelected(true);
-                richEditor.setHeading(1);
             }
+            richEditor.setHeading(1);
 
         }
         if (h2 == v) {

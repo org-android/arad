@@ -51,7 +51,7 @@ public class GuaGuaKa extends View {
     private Paint mBackPint = new Paint();
     private Rect mTextBound = new Rect();
 
-    private String mText = "￥" + (new Random().nextInt(10) + 5);
+    private String mText;
 
     private int mLastX;
     private int mLastY;
@@ -71,6 +71,12 @@ public class GuaGuaKa extends View {
     }
 
     private void init() {
+        int i = new Random().nextInt(10);
+        if (i < 10) {
+            mText = "谢谢惠顾";
+        } else {
+            mText = "￥" + i;
+        }
         mPath = new Path();
         // mBackBitmap = BitmapFactory.decodeResource(getResources(),
         // R.drawable.t2);

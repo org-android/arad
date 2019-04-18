@@ -26,11 +26,13 @@ import com.lzy.imagepicker.ImagePicker;
 import com.lzy.imagepicker.bean.ImageItem;
 import com.lzy.imagepicker.ui.ImageGridActivity;
 import com.lzy.imagepicker.view.CropImageView;
+import com.roc.view.FloatDragView;
 import com.roc.view.GlideImageLoader;
 import com.roc.view.RichEditor;
 import com.ruitu.arad.base.BaseContentActivity;
 import com.ruitu.arad.support.widget.progress.ProgressLayout;
 import com.ruitu.arad.util.Logg;
+import com.ruitu.arad.util.ToastUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,6 +61,7 @@ public class MainActivity extends BaseContentActivity {
 
     private LinearLayout ll;
     private LinearLayout ll_html;
+    private RelativeLayout rl_group;
     private FrameLayout frameLayout;
 
     @Override
@@ -107,6 +110,7 @@ public class MainActivity extends BaseContentActivity {
         h4 = findViewById(R.id.h4);
         ll = findViewById(R.id.ll);
         ll_html = findViewById(R.id.ll_html);
+        rl_group = findViewById(R.id.rl_group);
 
         iv_font.setOnClickListener(this);
         iv_image.setOnClickListener(this);
@@ -131,6 +135,13 @@ public class MainActivity extends BaseContentActivity {
         imageViews.add(h2);
         imageViews.add(h3);
         imageViews.add(h4);
+
+        FloatDragView.addFloatDragView(this, rl_group, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ToastUtils.showShort("点击了悬浮按钮");
+            }
+        });
     }
 
     boolean font_check = true;

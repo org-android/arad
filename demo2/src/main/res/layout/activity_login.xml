@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:gravity="center"
     android:orientation="vertical"
     android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -17,56 +17,57 @@
         android:id="@+id/card_view"
         android:layout_width="320dp"
         android:layout_height="300dp"
+        android:layout_marginHorizontal="@dimen/dp_36"
         android:background="@color/white"
-        android:paddingVertical="@dimen/dp_10"
-        android:layout_marginHorizontal="@dimen/dp_36">
+        android:paddingVertical="@dimen/dp_10">
 
         <LinearLayout
             android:id="@+id/email_login_form"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
             <RelativeLayout
-                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
-                android:layout_height="45dp">
+                android:layout_height="45dp"
+                android:layout_marginTop="10dp">
+
                 <View
-                    android:layout_alignParentStart="true"
                     android:layout_width="8dp"
                     android:layout_height="match_parent"
-                    android:background="#2fa881"
-                    />
+                    android:layout_alignParentStart="true"
+                    android:background="#2fa881" />
+
                 <TextView
-                    android:layout_centerVertical="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
                     android:layout_marginStart="50dp"
                     android:text="登录"
                     android:textColor="#FFCC00"
                     android:textSize="18sp"
-                    android:textStyle="bold"
-                    />
+                    android:textStyle="bold" />
             </RelativeLayout>
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:theme="@style/LoginTextLable"
-                android:layout_marginHorizontal="@dimen/dp_36">
+                android:layout_marginHorizontal="@dimen/dp_36"
+                android:theme="@style/LoginTextLable">
 
                 <com.ruitu.arad.view.EditTextCleanView
                     android:id="@+id/et_account"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" 
+                    android:layout_height="wrap_content"
                     android:hint="@string/prompt_email"
-                    android:textSize="@dimen/sp_16"/>
+                    android:textSize="@dimen/sp_16" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:theme="@style/LoginTextLable"
-                android:layout_marginHorizontal="@dimen/dp_36">
+                android:layout_marginHorizontal="@dimen/dp_36"
+                android:theme="@style/LoginTextLable">
 
                 <EditText
                     android:id="@+id/password"
@@ -78,41 +79,42 @@
                     android:imeOptions="actionUnspecified"
                     android:inputType="textPassword"
                     android:maxLines="1"
-                    android:textSize="@dimen/sp_16"
-                    android:singleLine="true" />
+                    android:singleLine="true"
+                    android:textSize="@dimen/sp_16" />
 
             </android.support.design.widget.TextInputLayout>
 
             <Button
                 android:id="@+id/email_sign_in_button"
-                android:layout_marginTop="20dp"
-                android:layout_gravity="center_horizontal"
-                android:background="@drawable/selecte_text_color"
-                android:stateListAnimator="@drawable/state_list_animator_z"
                 android:layout_width="120dp"
                 android:layout_height="46dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/selecte_text_color"
+                android:stateListAnimator="@drawable/state_list_animator_z"
                 android:text="登录"
-                android:textColor="@color/white"/>
+                android:textColor="@color/white" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/sp_14"
-                android:text="忘记密码?"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/dp_6"
-                android:layout_gravity="center_horizontal"/>
+                android:text="忘记密码?"
+                android:textSize="@dimen/sp_14" />
         </LinearLayout>
     </android.support.v7.widget.CardView>
+
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:fabSize="normal"
-        app:backgroundTint="#2fa881"
+        android:layout_alignTop="@id/card_view"
+        android:layout_alignEnd="@id/card_view"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="-20dp"
         android:src="@drawable/zhuce"
         android:transitionName="loginFab"
-        android:layout_alignTop="@id/card_view"
-        android:layout_marginTop="24dp"
-        android:layout_alignEnd="@id/card_view"
-        android:layout_marginEnd="-20dp"/>
+        app:backgroundTint="#2fa881"
+        app:fabSize="normal" />
 </RelativeLayout>

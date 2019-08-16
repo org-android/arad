@@ -10,7 +10,6 @@ import com.hjq.permissions.Permission;
 import com.ruitu.arad.base.BaseActivity;
 import com.ruitu.arad.util.ToastUtils;
 import com.ruitu.arad.util.UIUtils;
-import com.ruitu.player18.player.PlayerActivity;
 import com.ruitu.player18.player.VideoViewActivity;
 import com.ruitu.player18.radio.FmOnlineActivity;
 import com.ruitu.player18.tv.TvActivity;
@@ -87,7 +86,8 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 alertDialog.dismiss();
-                startActivity(PlayerActivity.class);
+                ToastUtils.showShortSafe("暂不支持");
+//                startActivity(PlayerActivity.class);
             }
         });
 

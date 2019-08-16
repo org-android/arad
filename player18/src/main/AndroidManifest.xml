@@ -22,7 +22,7 @@
             android:name=".tv.TvActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"></activity>
         <activity android:name=".player.VideoViewActivity" />
-        <activity android:name=".player.PlayerActivity" />
+        <!--<activity android:name=".player.PlayerActivity" />-->
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

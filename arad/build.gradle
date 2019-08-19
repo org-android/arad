@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 //apply from: 'install.gradle'
 //apply from: 'bintray.gradle'
+apply from: 'maven-release-aar.gradle'
 
 android {
     compileSdkVersion 27
@@ -9,7 +10,7 @@ android {
         minSdkVersion 17
         targetSdkVersion 27
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.2"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

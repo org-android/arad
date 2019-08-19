@@ -1,6 +1,8 @@
 apply plugin: 'com.android.library'
 //apply from: 'install.gradle'
-//apply from: 'bintray.gradle'
+apply plugin:'com.github.dcendents.android-maven'
+group='com.github.chinawubin118'
+group='com.gitee.chinawubin118'
 
 android {
     compileSdkVersion 27

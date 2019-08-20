@@ -1,0 +1,21 @@
+/**
+ * 在这里单独处理统一依赖问题 ,注意需要在根目录的build.gradle中进行引入
+ */
+ext {
+    android = [
+            compileSdkVersion: 28,
+            minSdkVersion    : 19,
+            targetSdkVersion : 26,
+    ]
+    // 必备基础依赖包
+    supportVersion = "28.0.0"
+    constraintVersion = "1.1.3"
+    libs = [
+            "supportv4"    : "com.android.support:support-v4:${supportVersion}",
+            "appcompatv7"  : "com.android.support:appcompat-v7:${supportVersion}",
+            "suppoutDesign": "com.android.support:design:${supportVersion}",
+            "recyclerview" : "com.android.support:recyclerview-v7:${supportVersion}",
+            "cardView"     : "com.android.support:cardview-v7:${supportVersion}",
+            "constraint"   : "com.android.support.constraint:constraint-layout:${constraintVersion}"
+    ]
+}

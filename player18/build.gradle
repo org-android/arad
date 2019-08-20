@@ -1,12 +1,14 @@
 apply plugin: 'com.android.application'
 
+def ver = rootProject.ext.android
+
 android {
-    compileSdkVersion 27
+    compileSdkVersion ver.compileSdkVersion
 
     defaultConfig {
         applicationId "com.ruitu.player18"
-        minSdkVersion 17
-        targetSdkVersion 27
+        minSdkVersion ver.minSdkVersion
+        targetSdkVersion ver.targetSdkVersion
         versionCode 1
         versionName "1.0"
 

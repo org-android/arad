@@ -1,0 +1,26 @@
+// maven插件
+apply plugin: 'maven'
+// maven信息
+ext {
+    PUBLISH_GROUP_ID = 'com.github.chinawubin118'
+    PUBLISH_ARTIFACT_ID = 'arad'
+    PUBLISH_VERSION = '1.0.3'
+}
+//maven输出路径
+uploadArchives {
+    repositories.mavenDeployer {
+        repository(url: "file:///e:/maven/arad")
+        pom.project {
+            groupId project.PUBLISH_GROUP_ID
+            artifactId project.PUBLISH_ARTIFACT_ID
+            version project.PUBLISH_VERSION
+        }
+    }
+}
+task androidSourceJar(type: Jar) {
+    classifier = 'sources'
+    from android.sourceSets.main.java.sourceFiles
+}
+artifacts {
+    archives androidSourceJar
+}

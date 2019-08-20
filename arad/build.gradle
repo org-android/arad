@@ -1,7 +1,7 @@
 apply plugin: 'com.android.library'
 apply from: 'maven-release-aar.gradle'
 group = 'com.github.chinawubin118'
-group = 'com.gitee.chinawubin118'
+//group = 'com.gitee.chinawubin118'
 
 def ver = rootProject.ext.android
 def libs = rootProject.ext.libs

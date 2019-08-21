@@ -1,11 +1,13 @@
 apply plugin: 'com.android.application'
 
+def ver = rootProject.ext.android
+
 android {
-    compileSdkVersion 27
+    compileSdkVersion ver.compileSdkVersion
     defaultConfig {
         applicationId "com.roc.demo2"
-        minSdkVersion 17
-        targetSdkVersion 27
+        minSdkVersion ver.minSdkVersion
+        targetSdkVersion ver.targetSdkVersion
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -40,8 +42,6 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
-    implementation 'com.android.support:design:27.1.1'
     implementation 'com.android.support:support-vector-drawable:27.1.1'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'

@@ -1,8 +1,6 @@
-package com.ruitu.arad.util;
+package com.ruitu.router_module;
 
 import android.util.Log;
-
-import com.ruitu.arad.base.Config;
 
 public final class Logg {
     public static final String TAG = "develop_debug_log";

@@ -1,6 +1,7 @@
 package com.ruitu.arad.demo.dao;
 
-import com.ruitu.arad.base.Config;
+
+import com.ruitu.router_module.Config;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;

@@ -4,7 +4,7 @@ import com.ruitu.arad.api.BaseResult;
 import com.ruitu.arad.base.BaseModel;
 import com.ruitu.arad.demo.dao.APIRetrofit;
 import com.ruitu.arad.demo.dao.RxUtil;
-import com.ruitu.arad.util.Logg;
+import com.ruitu.router_module.Logg;
 import com.ruitu.router_module.bean.RongToken;
 import com.ruitu.router_module.bean.Version;
 

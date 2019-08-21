@@ -1,20 +1,14 @@
-package com.ruitu.arad.base;
+package com.ruitu.router_module;
 
 import com.ruitu.arad.api.RuituInterceptor;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 
-/**
- * Created by Administrator on 2018/4/18.
- */
+// 全局配置信息
 public class Config {
     public static boolean IS_DEBUG = true;
 
-    //47.104.175.133:80
-//    public static final String HTTP_URL = "http://192.168.2.132:8080/app/";
-//    public static final String BASE_URL = "http://192.168.2.132:8080/";
-//    public static final String URL = "http://192.168.2.132:8080/app/";
     public static final String HTTP_URL = "https://www.jbshch.com/app/";
     public static final String BASE_URL = "https://www.jbshch.com";
     public static final String URL = "https://www.jbshch.com/app/";

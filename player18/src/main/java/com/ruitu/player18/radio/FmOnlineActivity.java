@@ -19,13 +19,13 @@ import com.ruitu.arad.base.BaseActivity;
 import com.ruitu.arad.base.base_list.ListBaseAdapter;
 import com.ruitu.arad.util.AnimationUtil;
 import com.ruitu.arad.util.HandlerUtil;
-import com.ruitu.arad.util.Logg;
 import com.ruitu.arad.util.ToastUtils;
 import com.ruitu.player18.R;
 import com.ruitu.player18.bean.MusicInfo;
 import com.ruitu.player18.mvp.RadioModel;
 import com.ruitu.player18.mvp.RadioPresenter;
 import com.ruitu.player18.util.MediaUtil;
+import com.ruitu.router_module.Logg;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -6,8 +6,8 @@ import com.ruitu.arad.api.BaseResult;
 import com.ruitu.arad.base.BasePresenter;
 import com.ruitu.arad.demo.mvp.model.Http1Model;
 import com.ruitu.arad.demo.ui.activity.Http1Activity;
-import com.ruitu.arad.util.Logg;
 import com.ruitu.arad.util.ToastUtils;
+import com.ruitu.router_module.Logg;
 import com.ruitu.router_module.bean.Version;
 
 import io.reactivex.disposables.Disposable;

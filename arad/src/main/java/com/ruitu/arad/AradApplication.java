@@ -7,6 +7,7 @@ import android.text.TextUtils;
 
 import com.bumptech.glide.request.RequestOptions;
 import com.github.anzewei.parallaxbacklayout.ParallaxHelper;
+import com.github.jdsjlzx.interfaces.IRefreshHeader;
 import com.ruitu.arad.util.DeviceInformant;
 import com.ruitu.arad.util.Utils;
 
@@ -17,10 +18,8 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public abstract class AradApplication extends MultiDexApplication {
-
     public DeviceInformant deviceInfo;
     public AradApplicationConfig config;
-
     protected String processName;
 
     @Override
@@ -32,26 +31,26 @@ public abstract class AradApplication extends MultiDexApplication {
     @Override
     public void onCreate() {
         super.onCreate();
-
         processName = getProcessName(android.os.Process.myPid());
 
         if (getApplicationContext().getPackageName().equals(processName)) {
-            //只在主进程中，初始化一次
-            Utils.init(getApplicationContext());
 
+            Utils.init(getApplicationContext());// 只在主进程中，初始化一次
             config = appConfig();
+
             Arad.app = this;
             Arad.preferences = new Preferences(getSharedPreferences(config.preferencesName, Context.MODE_PRIVATE));
             deviceInfo = new DeviceInformant(getApplicationContext());
             Arad.bus = EventBus.getDefault();
 
             Arad.opts = new RequestOptions().placeholder(R.mipmap.img_default).error(R.mipmap.img_error).centerCrop();
+            Arad.opts_circle = new RequestOptions().placeholder(R.mipmap.img_default).error(R.mipmap.img_error).circleCrop();
+
+            Arad.refreshHeader = getRefreshHeader();
 
             registerActivityLifecycleCallbacks(ParallaxHelper.getInstance());
         }
     }
-
-    protected abstract AradApplicationConfig appConfig();
 
     /**
      * 获取进程号对应的进程名
@@ -81,4 +80,10 @@ public abstract class AradApplication extends MultiDexApplication {
         }
         return null;
     }
+
+    protected IRefreshHeader getRefreshHeader() {
+        return null;// 使用默认头部,自定义需要自行重写下拉刷新头部
+    }
+
+    protected abstract AradApplicationConfig appConfig();
 }

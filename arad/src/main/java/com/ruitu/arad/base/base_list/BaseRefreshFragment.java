@@ -15,6 +15,7 @@ import com.github.jdsjlzx.interfaces.OnLoadMoreListener;
 import com.github.jdsjlzx.interfaces.OnRefreshListener;
 import com.github.jdsjlzx.recyclerview.LRecyclerView;
 import com.github.jdsjlzx.recyclerview.LRecyclerViewAdapter;
+import com.ruitu.arad.Arad;
 import com.ruitu.arad.base.BaseModel;
 import com.ruitu.arad.base.BasePresenter;
 import com.ruitu.arad.support.widget.progress.ProgressLayout;
@@ -45,7 +46,9 @@ public abstract class BaseRefreshFragment<T extends BasePresenter, E extends Bas
         progressLayout = findProgressLayout(v);
         if (null != lRecyclerView) {
 
-            lRecyclerView.setRefreshHeader(new CustomRefreshHeader(getActivity()));
+            if (null != Arad.refreshHeader) {// new CustomRefreshHeader(context)
+                lRecyclerView.setRefreshHeader(Arad.refreshHeader);
+            }
 
             lRecyclerView.setAdapter(lAdapter);
             lRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));

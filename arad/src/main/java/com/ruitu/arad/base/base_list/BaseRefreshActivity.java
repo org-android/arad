@@ -12,6 +12,7 @@ import com.github.jdsjlzx.interfaces.OnLoadMoreListener;
 import com.github.jdsjlzx.interfaces.OnRefreshListener;
 import com.github.jdsjlzx.recyclerview.LRecyclerView;
 import com.github.jdsjlzx.recyclerview.LRecyclerViewAdapter;
+import com.ruitu.arad.Arad;
 import com.ruitu.arad.R;
 import com.ruitu.arad.base.BaseContentActivity;
 import com.ruitu.arad.base.BaseModel;
@@ -37,10 +38,13 @@ public abstract class BaseRefreshActivity<T extends BasePresenter, E extends Bas
 
     protected void initRecyclerView() {
         if (null != lRecyclerView) {
-            CustomRefreshHeader header = new CustomRefreshHeader(this);
-            header.setHintTextColor(R.color.l_rcv_color);
+
+//            CustomRefreshHeader header = new CustomRefreshHeader(this);
+//            header.setHintTextColor(R.color.l_rcv_color);
 //            header.setViewBackgroundColor(R.color.white);
-            lRecyclerView.setRefreshHeader(header);
+            if (null != Arad.refreshHeader) {// new CustomRefreshHeader(context)
+                lRecyclerView.setRefreshHeader(Arad.refreshHeader);
+            }
 
             lRecyclerView.setAdapter(lAdapter);
             lRecyclerView.setLayoutManager(new LinearLayoutManager(this));

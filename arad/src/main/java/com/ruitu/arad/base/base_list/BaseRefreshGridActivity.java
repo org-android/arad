@@ -7,6 +7,7 @@ import com.github.jdsjlzx.interfaces.OnItemClickListener;
 import com.github.jdsjlzx.interfaces.OnItemLongClickListener;
 import com.github.jdsjlzx.interfaces.OnLoadMoreListener;
 import com.github.jdsjlzx.interfaces.OnRefreshListener;
+import com.ruitu.arad.Arad;
 import com.ruitu.arad.R;
 import com.ruitu.arad.base.BaseModel;
 import com.ruitu.arad.base.BasePresenter;
@@ -17,10 +18,13 @@ public abstract class BaseRefreshGridActivity<T extends BasePresenter, E extends
     @Override
     protected void initRecyclerView() {
         if (null != lRecyclerView) {
-            CustomRefreshHeader header = new CustomRefreshHeader(this);
-            header.setHintTextColor(R.color.l_rcv_color);
+
+//            CustomRefreshHeader header = new CustomRefreshHeader(this);
+//            header.setHintTextColor(R.color.l_rcv_color);
 //            header.setViewBackgroundColor(R.color.white);
-            lRecyclerView.setRefreshHeader(header);
+            if (null != Arad.refreshHeader) {// new CustomRefreshHeader(context)
+                lRecyclerView.setRefreshHeader(Arad.refreshHeader);
+            }
 
             lRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
             lRecyclerView.setAdapter(lAdapter);

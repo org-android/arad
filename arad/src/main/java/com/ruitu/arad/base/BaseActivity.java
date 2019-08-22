@@ -117,6 +117,13 @@ public abstract class BaseActivity<P extends BasePresenter, M extends BaseModel>
         }
     }
 
+    protected void setOnClickListener(View... views) {
+        for (View v : views) {
+            if (null == v) throw new NullPointerException("不能传入空的控件!");
+            v.setOnClickListener(this);
+        }
+    }
+
     @Override
     public void onReqComplete(int code, boolean isOk, Object data) {
 

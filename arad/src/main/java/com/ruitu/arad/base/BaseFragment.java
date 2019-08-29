@@ -38,6 +38,13 @@ public class BaseFragment<P extends BasePresenter, M extends BaseModel> extends 
         }
     }
 
+    protected void setOnClickListener(View... views) {
+        for (View v : views) {
+            if (null == v) throw new NullPointerException("不能传入空的控件!");
+            v.setOnClickListener(this);
+        }
+    }
+
     public boolean isDataEmpty(List list) {//判断list数据是否为空:null 或者size = 0 视为空
         return null == list || list.size() == 0;
     }
